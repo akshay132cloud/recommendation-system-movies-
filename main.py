@@ -1,4 +1,5 @@
 import numpy as np
+import os
 import pandas as pd
 from flask import Flask, render_template, request
 from sklearn.feature_extraction.text import CountVectorizer
@@ -157,4 +158,5 @@ def recommend():
         movie_cards=movie_cards,reviews=movie_reviews,casts=casts,cast_details=cast_details)
 
 if __name__ == '__main__':
-    app.run(debug=True,port=8081)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
